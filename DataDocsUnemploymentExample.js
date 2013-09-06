@@ -10,7 +10,7 @@ function show_info(e){
 
 $(document).ready(function(){
 
-data_doc = DataDoc("#datadocsvid", "all_info", "embed_code");
+data_doc = DataDoc({"video_id": "datadocsvid", "fullscreen_id": "all_info", "embed_id":"embed_code"});
 
 
 //adding a few "manual" overlays - our "Learn More" buttons
@@ -76,7 +76,6 @@ function addLabelData(data){
 function addFREDData(data){
 	
 	data_doc.addOverlays("charts", data);
-	console.log("hi here");
 
 }
 

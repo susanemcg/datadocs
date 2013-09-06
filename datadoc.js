@@ -3,10 +3,10 @@
 
   //  Declare constructor
   //  Returns an instance object.
-  function DataDoc(entity, fullscreen_container_id, embed_div, options ) {
+  function DataDoc(parameters, options) {
 
     //ok, so we're setting the new 
-    return new DataDoc.dd.init( entity, fullscreen_container_id, embed_div, options || null );
+    return new DataDoc.dd.init( parameters.video_id, parameters.fullscreen_id, parameters.embed_id, options || null );
 
   };
 
@@ -16,13 +16,11 @@
 
     init : function( entity, fullscreen_container_id, embed_div, options ) {
 
-      console.log("in init!?!");
-      this.video = Popcorn(entity);
+      this.video = Popcorn("#"+entity);
       this.pauseBtnID = "#pause_button";
       this.overlay = document.getElementById("overlays");
 
       this["video"] = this.video; //expose the video property so it can be accessed by external scripts
-
 
       customcontrols(this["video"].video, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div});
 
@@ -150,7 +148,7 @@
           end:Number(chartInfo.meta.start_end[1]),
           target:chartDiv.id
         });
-        console.log("what?!");
+
         //takes the metadata about the chart and the target div, and populates it with the appropriate chart!
         loadFREDChart(chartInfo.chart_info, chartDiv, 'gif');
 

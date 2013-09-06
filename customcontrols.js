@@ -51,12 +51,28 @@ function customcontrols(entity, options) {
 
   }else{
     console.log("Cannot locate specified fullscreen container div.");
+
+    //if fullscreen container cannot be located, hide the fullscreen button div
+    if(document.getElementById("fullscreen_button")){
+      document.getElementById("fullscreen_button").style.display = "none";
+    }
+
   }//end fullscreen_container conditional
 
 
   if(embed_div){ 
     // add flag to show embed button
     controlsArray.push("embed");
+  }else{
+
+    //if embed container cannot be located, hide the fullscreen button div
+    if(document.getElementById("embed_button")){
+      document.getElementById("embed_button").style.display = "none";
+    }
+    if(document.getElementById("embed_code")){
+     document.getElementById("embed_code").style.display = "none"; 
+    }
+
   }//end embed_container conditional
   
   // need error handling for below
@@ -163,6 +179,8 @@ function customcontrols(entity, options) {
         options.screenfull.onchange();
 
       } //end fullscreen
+
+
       if(controlsArray[i] == "embed"){
         var btnimg = document.createElement("img");
         btnimg.src = "assets/controls/"+controlsArray[i]+".png"; 
@@ -181,6 +199,11 @@ function customcontrols(entity, options) {
     }
   }
 
+  if(controlsArray.length == 1){ //e.g. neither fullscreen nor embed button are present
+    scrubber.style.width = "68%";
+  }else if (controlsArray.length == 2){ //e.g. either fullscreen or embed is present
+    scrubber.style.width = "59%";
+  }
 
   //if all necessary divs are present, full steam ahead!
   if (controls_div && scrubber && progressBar && timediv && controlsFlag){
