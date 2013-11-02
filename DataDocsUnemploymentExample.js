@@ -54,14 +54,13 @@ data_doc.addSalt({
 data_doc.addCaramel({
 	target:"chart1_info",
 	function_name:"show_info"
-})
+});
 
-		
 
-	//now, load json file with title info
-	$.get('text_labels.json', addLabelData, 'json');
-	$.get('DataDoc_FRED_data.json', addFREDData, 'json');
-	
+//now, load json file with title info
+$.get('text_labels.json', addLabelData, 'json');
+$.get('DataDoc_FRED_data.json', addFREDData, 'json');
+
 }, false);  //end document ready
 
 

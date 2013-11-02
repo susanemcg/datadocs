@@ -44,7 +44,7 @@ function returnHandDrawn(textToRender, textSize){
  	theDiv.appendChild(wordDiv);
  
 	}
-	
+	theDiv.className = "handText";
 	return(theDiv);
 	
 }
