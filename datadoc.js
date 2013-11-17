@@ -154,8 +154,260 @@
 
       }
 
-    }
+    },
 
+    /**
+     * Retrieve geolocation data and store results. Should be called once,
+     * preferably early, to get the position value and cache it. Necessary
+     * to get any location information via getLocation.
+     *
+     * @param {boolean=} enableStringFormats [optional] Whether the resulting
+     *     position object (latitude/longitude) should be reverse geolocated to
+     *     enable getting things like zipcode, city, state, country, etc. If
+     *     true, will make sure Google Maps API is loaded and then call
+     *     reverseGeoLocate after position is retrieved to make the API call
+     *     and cache the results.
+     * @param {Object=} options [optional] object to customize the geolocation
+     *     call. Parameters can be any of the PositionOptions values:
+     *     developer.mozilla.org/en-US/docs/Web/API/PositionOptions
+     * @param {Function=} onError [optional] function to be called if getting
+     *     geo data fails for whatever reason.
+     */
+    enableGeolocation: function(enableStringFormats, options, onError) {
+      // Do not update a position once it has been determined.
+      // TODO(dbow): Maybe there is a use case for more than one call to get
+      //     position? Right now this assumes you just need it once.
+      if (this.position) {
+        return;
+      }
+
+      // Make sure options is an object.
+      options = (options === Object(options)) ? options : {};
+
+      // TODO(dbow): Might be nice to handle a failure in browser-based
+      //     geolocation somehow in a standard way. Right now you can
+      //     pass an error handling function, but perhaps there should be
+      //     some standardized error handlers. Like if you want to just
+      //     stop the video and prevent playback. Or if you want to manually
+      //     prompt the user for input. Or something else.
+      onError = (typeof onError === 'function') ? onError : function () {};
+
+      if ('geolocation' in navigator) {
+        var geoOptions = {
+          enableHighAccuracy: options.highAccuracy || false,
+          timeout: options.timeout || 5000,
+          maximumAge: options.maximumAge || 0
+        };
+
+        var self = this;
+
+        function success(position) {
+          // Store the position on the DataDoc.
+          // Will be an object with latitude, longitude, and accuracy values.
+          // (and maybe more but those are the only guaranteed ones).
+          self.position = position.coords;
+
+          // If enableStringFormats is true, load Google Maps API and reverse
+          // geolocate the position coordinates.
+          if (enableStringFormats) {
+            self.loadGoogleMaps(self.reverseGeolocate);
+          }
+        }
+
+        navigator.geolocation.getCurrentPosition(success, onError, geoOptions);
+
+      } else {
+        // Browser-based geolocation is not possible.
+        onError();
+      }
+    },
+
+    /**
+     * Load the Google Maps API, if necessary, and then call the callback
+     * function provided.
+     *
+     * @param {Function} callback to execute after Google Maps API loads.
+     */
+    loadGoogleMaps: function(callback) {
+      // Ensure callback is a function.
+      callback = (typeof callback === 'function') ? callback : function() {};
+
+      // Google Maps API already present.
+      if (window.google && window.google.maps && window.google.maps.Geocoder) {
+        callback();
+
+      // Need to load Google Maps API.
+      } else {
+        var self = this;
+
+        // Create a function that will be called when the Google Maps API
+        // loads. It will prevent multiple attempts to load the API, and
+        // remove itself when completed. It will also call the initial callback
+        // once the API is loaded.
+        if (this.tempFunc_) {
+          return;
+        }
+        // Create an obscure window variable to avoid naming collisions.
+        this.tempFunc_ = '_tempCb' + new Date().getTime();
+        window[this.tempFunc_] = function() {
+          callback.apply(self);
+          // Remove temporary callback.
+          try {
+            // Some browsers throw when deleting window properties.
+            delete window[self.tempFunc_];
+          } catch(e) {
+            // In that case, just set it to undefined.
+            window[self.tempFunc_] = undefined;
+          }
+        };
+
+        // Load Google Maps API script with callback onload.
+        var gmaps = document.createElement('script');
+        gmaps.setAttribute('src',
+            '//maps.googleapis.com/maps/api/js?v=3.exp' +
+            '&sensor=false&callback=' + this.tempFunc_);
+        document.body.appendChild(gmaps);
+      }
+    },
+
+    /**
+     * Issues a call to Google Maps API to reverse geolocate the latitude
+     * and longitude stored on the DataDoc into zipcode, city, state, and
+     * country values if possible and store results in formatCache.
+     */
+    reverseGeolocate: function() {
+      // Can't do anything if we don't have position data.
+      if (!this.position) {
+        return;
+      }
+
+      // Map of format strings to google maps types.
+      var formatMap = {
+        'zipcode': 'postal_code',
+        'city': 'locality',
+        'state': 'administrative_area_level_1',
+        'country': 'country'
+      };
+
+      // Make sure we have a cache of formats for this position.
+      if (!this.formatCache) {
+        this.formatCache = {};
+      }
+
+      // Wrapper to handle non-es5 browsers that lack Array.indexOf.
+      // TODO(dbow): probably put this in a utils area for general use.
+      function inArray(array, item) {
+        if (typeof array.indexOf === 'function') {
+          return array.indexOf(item) >= 0;
+        }
+        for (var i = 0, len = array.length; i < len; i++) {
+          if (array[i] === item) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      // Calls to this function should be wrapped in loadGoogleMaps to ensure
+      // the necessary files have been loaded. If they haven't, just exit.
+      if (!google || !google.maps || !google.maps.Geocoder) {
+        return;
+      }
+
+      // Initialize the Geocoder and Latitude/Longitude objects.
+      var geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(this.position.latitude,
+          this.position.longitude);
+      var self = this;
+
+      // Call a given function for each param in a given
+      // object, and return whether the object is empty or not.
+      // TODO(dbow): Could probably be more generally useful.
+      function forEach(object, func) {
+        var empty = true;
+        for (var key in object) {
+          if (object.hasOwnProperty(key)) {
+            func(object[key], key);
+            empty = false;
+          }
+        }
+        return empty;
+      }
+
+      // Reverse geocode the latlng.
+      geocoder.geocode({'latLng': latlng}, function(results, geocoderStatus) {
+        var result;
+        var components;
+        var component;
+        var empty = false;
+        if (geocoderStatus === google.maps.GeocoderStatus.OK) {
+          if (results.length) {
+            // Iterate over results array.
+            for (var i = 0, ilen = results.length; i < ilen; i++) {
+              result = results[i];
+              if (result && result.address_components) {
+                components = result.address_components;
+                // Iterate through address components of each result.
+                for (var j = 0, jlen = components.length; j < jlen; j++) {
+                  component = components[j];
+                  // Use forEach to simultaneously cache any available formats
+                  // and check if formatMap is empty yet so we can exit the
+                  // loops early.
+                  empty = forEach(formatMap, function(gmapsFormat, format) {
+                    // If type matches an empty format value, cache it.
+                    if (inArray(component.types, gmapsFormat)) {
+                      // TODO(dbow): Right now this basically just uses the
+                      //     first value it finds for each. There might be a
+                      //     more accurate algorithm where you compare
+                      //     frequency of each value appearing in multiple
+                      //     addresses? Doubt that is essential at this point
+                      //     though.
+                      self.formatCache[format] = component.long_name;
+                      delete formatMap[format];
+                    }
+                  });
+                  // Break early if we have what we need.
+                  if (empty) {
+                    break;
+                  }
+                }
+              }
+              if (empty) {
+                break;
+              }
+            }
+
+          // TODO(dbow): Probably some better error handling.
+
+          } else {
+            // No results.
+          }
+        } else {
+          // Geocoder failed.
+        }
+      });
+    },
+
+    /**
+     * Retrieve location values in provided format.
+     *
+     * @param {string} format to return the location in. Can be 'zipcode',
+     *     'city', 'state' or 'country'. Default (when not provided) is the
+     *     position object, with lat and long.
+     * @return {string|Object} The location string or object depending on what
+     *     was available and requested.
+     */
+    getLocation: function(format) {
+      // If enableGeolocation was not called, or it failed, can't get location.
+      if (!this.position) {
+        return '';
+      }
+      var result = this.position;
+      if (format) {
+        result = this.formatCache && this.formatCache[format] || '';
+      }
+      return result;
+    }
 
   };//end prototype declaration
 
