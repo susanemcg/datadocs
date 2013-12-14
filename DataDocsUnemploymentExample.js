@@ -12,6 +12,7 @@ $(document).ready(function(){
 
 data_doc = DataDoc({"video_id": "datadocsvid", "fullscreen_id": "all_info", "embed_id":"embed_code"});
 
+data_doc.enableGeolocation(true);
 
 //adding a few "manual" overlays - our "Learn More" buttons
 
