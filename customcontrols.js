@@ -1,5 +1,11 @@
 function customcontrols(entity, options) {
   var thevideo = entity;
+
+  console.log("looking for native height and width")
+  console.log(thevideo)
+  console.log(thevideo.style.height)
+
+
   var options = options || {}; // if options were passed, use those; otherwise, make empty so tests don't throw errors
 
   var controls_div = options.controls_div ? document.getElementById(options.controls_div) : document.getElementById("custom_controls");
@@ -7,6 +13,9 @@ function customcontrols(entity, options) {
   var embed_div = options.embed_container ? document.getElementById(options.embed_container) : null;
   var controlsArray = ["play_pause"]; //running list of which buttons/controls the plugin should generate
   var scalingElements = [];
+  var embedFactor = 1;
+
+
 
   if(fs_div){ //required for fullscreen functionality
 
@@ -17,12 +26,32 @@ function customcontrols(entity, options) {
       elementsToScale = Array.prototype.slice.call(fs_div.childNodes);
       elementsToScale.push(fs_div);
 
+      if(window != window.parent){
+          var fs_CSS = fs_div.currentStyle || getComputedStyle(fs_div,null);
+          embedFactor = window.innerWidth / stripPx(fs_CSS.width);
+          
+          //once we've determined what it should be, we have to adjust the
+          //fs_div to match it
+
+          fs_div.style.width = window.innerWidth+"px";
+          fs_div.style.height = window.innerHeight+"px";
+
+      }
+
+
+
       //for each child node, we need to keep track of: a) the element, b) original width and c) original height
       for (i=0; i<elementsToScale.length; i++){
+
         if(elementsToScale[i].nodeName != "#text"){
           elemCSS = elementsToScale[i].currentStyle || getComputedStyle(elementsToScale[i],null);
-          
+
           //fullscreen means appropriately scaling non-video; here, calculate transform and create new style on the document
+          
+          /*
+          * implicit here is that the fullscreen div & the video will have the same proportions
+          */
+
           if(elementsToScale[i] === fs_div){
 
             // create transform class to apply to non-video elements
@@ -30,14 +59,28 @@ function customcontrols(entity, options) {
             scale_style.type = 'text/css';
 
             //transform proportion determined by screen width vs. fullscreen element width
-            var fsRatio = screen.width/stripPx(elemCSS.width);
+            var fsRatio = screen.width/stripPx(elemCSS.width)*embedFactor;
+            //console.log("calculating fullscreen factor, elemCSS = "+ elemCSS.width);
             var scaleString = "scale("+fsRatio+","+fsRatio+")";
 
             scale_style.innerHTML = ".fs_scale { -webkit-transform:"+scaleString+"; -webkit-transform-origin: 0% 0%; -moz-transform:"+scaleString+"; -moz-transform-origin: 0% 0%; -ms-transform: "+scaleString+"; -ms-transform-origin: 0% 0%; -o-transform:"+scaleString+"; -o-transform-origin: 0% 0%; transform:"+scaleString+"; transform-origin: 0% 0%;}";
             document.getElementsByTagName('head')[0].appendChild(scale_style);
 
-          }
+            if(embedFactor != 1){
+              //this means that we need to scale everything down, so that when we're at "normal" size we're actually
+              //at the embed scale size
 
+              var embed_style = document.createElement('style');
+              embed_style.type = 'text/css';
+
+              var embedScale = "scale("+embedFactor+","+embedFactor+")";
+
+              embed_style.innerHTML = ".embed_scale { -webkit-transform:"+embedScale+"; -webkit-transform-origin: 0% 0%; -moz-transform:"+embedScale+"; -moz-transform-origin: 0% 0%; -ms-transform: "+embedScale+"; -ms-transform-origin: 0% 0%; -o-transform:"+embedScale+"; -o-transform-origin: 0% 0%; transform:"+embedScale+"; transform-origin: 0% 0%;}";
+              document.getElementsByTagName('head')[0].appendChild(embed_style);
+            }
+
+
+          }
 
           scalingElements.push({"elem":elementsToScale[i], "width":elemCSS.width, "height":elemCSS.height});
         }
@@ -154,6 +197,9 @@ function customcontrols(entity, options) {
         //add change handler for screenfull element
         screenfull.onchange = function(e){
 
+          console.log("changed! watch for embed")
+          console.log(embedFactor);
+
           if (!options.screenfull.isFullscreen){
 
             for (var j=0; j<scalingElements.length; j++){
@@ -161,14 +207,21 @@ function customcontrols(entity, options) {
               var elem = scalingElements[j].elem;
               if(elem === controls_div){ //in case of controls div, only adjust width & top position
                 controls_div.style.width = scalingElements[j].width;
-                controls_div.style.top = "10px";
+                controls_div.style.top = "-10%";
               }else{
                 //this else clause should handle the video and the overlays div
                 scalingElements[j].elem.style.width = scalingElements[j].width;
                 scalingElements[j].elem.style.height = scalingElements[j].height;
                 //if our element isn't the video, then remove scalar transform
                 if(scalingElements[j].elem.nodeName != "VIDEO" && scalingElements[j].elem != fs_div){
-                  scalingElements[j].elem.className = "";
+
+                  //IF there is an embed scale, apply that style
+                  if(embedFactor != 1){
+                    scalingElements[j].elem.className = "embed_scale";
+                  }else{
+                    scalingElements[j].elem.className = "";
+                  }
+
                 }
               }
             }// end scaling elements loop
