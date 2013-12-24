@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<observations realtime_start="2013-02-26" realtime_end="2013-02-26" observation_start="2010-10-01" observation_end="9999-12-31" units="lin" output_type="1" file_type="xml" order_by="observation_date" sort_order="asc" count="10" offset="0" limit="100000">
-<observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2010-10-01" value="16.7"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2011-01-01" value="16.0"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2011-04-01" value="16.0"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2011-07-01" value="16.1"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2011-10-01" value="15.6"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2012-01-01" value="14.9"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2012-04-01" value="14.7"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2012-07-01" value="14.8"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2012-10-01" value="14.4"/><observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2013-01-01" value="14.2"/>
-</observations>
-
-
-

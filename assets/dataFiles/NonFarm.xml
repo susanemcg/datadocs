@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<observations realtime_start="2013-05-24" realtime_end="2013-05-24" observation_start="2013-04-01" observation_end="9999-12-31" units="lin" output_type="1" file_type="xml" order_by="observation_date" sort_order="desc" count="2" offset="0" limit="100000">
-<observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2013-04-01" value="135474"/>
-<observation realtime_start="2013-04-05" realtime_end="2013-04-05" date="2013-03-01" value="135309"/>
-</observations>

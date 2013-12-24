@@ -3,24 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="DataDocsUnemployment.css">
-		<script src="jquerymin.js"></script>
-		<script src="popcorn.js"></script>
-		<script src="screenFull.js"></script>
-		<script src="utils.js"></script>
-		<script src="datadocs_handtext.js"></script>
-		<script src="FREDChartSuite.js"></script>
-		<script src="popcorn.salt.js"></script>
-		<script src="popcorn.caramel.js"></script>
-		<script src="customcontrols.js"></script>
-		<script src="datadoc.js"></script>
-		<script src="DataDocsUnemploymentExample.js"></script>
-		<title>Data Docs - Unemployment Explained</title>
+
+		<!--load our webfont -->
+		<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<script src="js/thirdparty/jquerymin.js"></script>
+		<script src="js/thirdparty/popcorn.js"></script>
+		<script src="js/thirdparty/screenFull.js"></script>
+		<script src="js/datadocs/utils.js"></script>
+		<script src="js/datadocs/popcorn_plugins/popcorn.salt.js"></script>
+		<script src="js/datadocs/popcorn_plugins/popcorn.caramel.js"></script>
+		<script src="js/datadocs/customcontrols.js"></script>
+		<script src="js/datadocs/datadoc.js"></script>
+		<script src="main.js"></script>
+		<title>Data Docs</title>
 	</head>
 	<body>
 		<div id="contentContainer">
 			<div id="all_info">
-				<video id="datadocsvid" poster="assets/graphElements/poster.png" style="width:800px; height:450px;">
+				<video id="datadocsvid" poster="assets/graphElements/poster.png" style="width:100%; height:100%;">
        				<source src="assets/videoFiles/DataDoc1_MAINSEQ_v4.mp4" type="video/mp4">
         			<source type="video/ogg" src="assets/videoFiles/DataDoc1_MAINSEQ_v4.ogv">
         			<source type="video/webm" src="assets/videoFiles/DataDoc1_MAINSEQ_v4.webm">
@@ -44,6 +46,20 @@
 				</div>
 		  	</div>	  	
       	</div>
+      	<script>
+      	//if this page is embedded, correct the positioning of our main elements
+      	if(window != window.parent){
+
+      		var theContent = document.getElementById("contentContainer");
+      		theContent.style.position = "absolute";
+      		theContent.style.top = "0px";
+      		theContent.style.left = "0px";
+
+      		var theInfo = document.getElementById("all_info");
+      		theInfo.style.position = "absolute";
+
+      	}
+      	</script>
 	</body>
 </html>
 
