@@ -1,15 +1,11 @@
 function customcontrols(entity, options) {
   var thevideo = entity;
 
-  console.log("looking for native height and width")
-  console.log(thevideo)
-  console.log(thevideo.style.height)
-
-
   var options = options || {}; // if options were passed, use those; otherwise, make empty so tests don't throw errors
 
   var controls_div = options.controls_div ? document.getElementById(options.controls_div) : document.getElementById("custom_controls");
   var fs_div = options.fullscreen_container ? document.getElementById(options.fullscreen_container) : null;
+  var control_style = options.control_style ? options.control_style : null;
   var embed_div = options.embed_container ? document.getElementById(options.embed_container) : null;
   var controlsArray = ["play_pause"]; //running list of which buttons/controls the plugin should generate
   var scalingElements = [];
@@ -130,19 +126,37 @@ function customcontrols(entity, options) {
       console.log("Required div "+controlsArray[i]+"_button not found.");
       controlsFlag = false;
     }else{
-      if(i == 0){ //always "play_pause"
+      if(i == 0){ //element 0 is always "play_pause"
         var playbtn = document.createElement("div");
         playbtn.id = "play_button";
-        var playimg = document.createElement("img");
-        playimg.src = "assets/controls/play.png";
-        playbtn.appendChild(playimg);
-        controlButton.appendChild(playbtn);
 
         var pausebtn = document.createElement("div");
         pausebtn.id = "pause_button";
-        var pauseimg = document.createElement("img");
-        pauseimg.src = "assets/controls/pause.png";
-        pausebtn.appendChild(pauseimg);
+
+        if(control_style == "css"){
+          playbtn.className = "play_btn";
+          pausebtn.className = "pause_btn";
+
+          var playArrow = document.createElement("div");
+          playArrow.className = "arrow-right";
+          playbtn.appendChild(playArrow);
+
+          var pauseBox = document.createElement("div");
+          pauseBox.className = "pauseDash";
+          pausebtn.appendChild(pauseBox);
+
+
+        }else{
+          var playimg = document.createElement("img");
+          playimg.src = "assets/controls/play.png";
+          playbtn.appendChild(playimg);
+
+          var pauseimg = document.createElement("img");
+          pauseimg.src = "assets/controls/pause.png";
+          pausebtn.appendChild(pauseimg);
+        }
+
+        controlButton.appendChild(playbtn);
         controlButton.appendChild(pausebtn);
 
         //click handler for play button
@@ -197,8 +211,6 @@ function customcontrols(entity, options) {
         //add change handler for screenfull element
         screenfull.onchange = function(e){
 
-          console.log("changed! watch for embed")
-          console.log(embedFactor);
 
           if (!options.screenfull.isFullscreen){
 

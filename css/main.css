@@ -1,6 +1,50 @@
 /* It's important to make sure that any overlays have *absolute* positioning,
 	otherwise they won't position correctly in fullscreen mode */
 
+
+
+/* for changing the look & feel of the controls via css */
+
+.play_btn{
+	border: solid 1px white;
+	height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.pause_btn{
+	border: solid 1px white;
+	height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+}
+
+/* courtesy http://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 14px solid transparent;
+	border-bottom: 14px solid transparent;
+	border-left: 25px solid white;
+	margin-left: 42%;
+	margin-top: 2%;
+}
+
+.pauseDash{
+   	border-left: 6px solid #FFFFFF;
+    border-right: 6px solid #FFFFFF;
+    height: 75%;
+    margin-left: 42%;
+    margin-top: 3%;
+    width: 8%;
+}
+
+
 /* do not modify */
 
 body{

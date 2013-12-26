@@ -22,7 +22,12 @@
 
       this["video"] = this.video; //expose the video property so it can be accessed by external scripts
 
-      customcontrols(this["video"].video, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div});
+      var hasCSS = null;
+      if(options){
+        hasCSS = options.control_style;
+      }
+
+      customcontrols(this["video"].video, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div, "control_style":hasCSS});
 
       this["customcontrols"] = true;
 
