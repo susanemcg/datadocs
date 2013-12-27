@@ -44,6 +44,57 @@
     width: 8%;
 }
 
+.cornerStyle0{
+    width:25%;
+    height:25%;
+    margin-bottom: 20%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-left: 3px solid #FFFFFF;
+    border-top: 3px solid #FFFFFF;    
+}
+
+.cornerStyle1{
+    width:25%;
+    height:25%;
+    margin-bottom: 20%;
+    margin-left:20%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-top: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;  
+}
+
+.cornerStyle2{
+    width:25%;
+    height:25%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-bottom: 3px solid #FFFFFF;
+    border-left: 3px solid #FFFFFF; 
+}
+
+.cornerStyle3{
+    width:25%;
+    height:25%;
+    margin-left: 20%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-right: 3px solid #FFFFFF;
+    border-bottom: 3px solid #FFFFFF;
+}
+
+.shareBorder{
+    width:100%;
+    height:100%;
+    border: solid 3px white;
+    color:white;
+
+}
 
 /* do not modify */
 
@@ -108,15 +159,56 @@ body{
 	cursor: pointer;
 }
 #embed_code{
-        position: absolute;
-        width: 100%;
-        height: 38px;
-        top: -52px;
-        left: 0px;
-        background-color:black;
-        color:white;
-        font-family:Arial;
+   background-color: #333333;
+    border: 3px solid #FFFFFF;
+    color: #FFFFFF;
+    font-family: Arial;
+    height: 1200%;
+    left: 5%;
+    position: absolute;
+    top: -1500%;
+    width: 80%;
+    padding:30px;
 }
+.codeHolder{
+    position: relative;
+    display: inline;
+    float: left;
+    width:60%;
+    height:140px;
+    border:solid 1px white;
+    margin-left: 20px;
+}
+
+#embedClose{
+    position:absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    top: 5%;
+    left: 95%;
+    cursor: pointer;
+}
+
+.embedOption{
+    font-family: Arial, sans-serif;
+    color:#fff;
+    border: solid 1px white;
+    width: 100%;
+    height: 20%;
+    position:relative;
+    display:inline;
+    float: left;
+    cursor: pointer;
+}
+.sizeList{
+    width: 100px;
+    height: 130px;
+    position: relative;
+    display:inline;
+    float:left;
+}
+
 #embed_button{
 	width:8%;
 	height:30px;

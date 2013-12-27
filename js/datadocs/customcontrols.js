@@ -10,6 +10,7 @@ function customcontrols(entity, options) {
   var controlsArray = ["play_pause"]; //running list of which buttons/controls the plugin should generate
   var scalingElements = [];
   var embedFactor = 1;
+  var videoRatio;
 
 
 
@@ -22,8 +23,14 @@ function customcontrols(entity, options) {
       elementsToScale = Array.prototype.slice.call(fs_div.childNodes);
       elementsToScale.push(fs_div);
 
+      //incorrect dependency here - shouldn't need fullscreen to calculate default embed code
+      var fs_CSS = fs_div.currentStyle || getComputedStyle(fs_div,null);
+
+      videoRatio = [stripPx(fs_CSS.width), stripPx(fs_CSS.height)];
+
+
       if(window != window.parent){
-          var fs_CSS = fs_div.currentStyle || getComputedStyle(fs_div,null);
+
           embedFactor = window.innerWidth / stripPx(fs_CSS.width);
           
           //once we've determined what it should be, we have to adjust the
@@ -102,6 +109,7 @@ function customcontrols(entity, options) {
   if(embed_div){ 
     // add flag to show embed button
     controlsArray.push("embed");
+    drawEmbedInterface(embed_div, videoRatio);
   }else{
 
     //if embed container cannot be located, hide the fullscreen button div
@@ -177,9 +185,22 @@ function customcontrols(entity, options) {
 
       } //end play_pause
       if(controlsArray[i] == "fullscreen"){
-        var btnimg = document.createElement("img");
-        btnimg.src = "assets/controls/"+controlsArray[i]+".png"; 
-        controlButton.appendChild(btnimg);
+
+        if(control_style == "css"){
+          //need to create 4 little divs to make "corners" indicating fullscreen
+          for(var j=0; j<4; j++){
+            var cornerDiv = document.createElement("div");
+            cornerDiv.className = "cornerStyle"+j;
+            controlButton.appendChild(cornerDiv);
+          }
+
+        
+        }else{
+          var btnimg = document.createElement("img");
+          btnimg.src = "assets/controls/"+controlsArray[i]+".png"; 
+          controlButton.appendChild(btnimg);
+        }
+        
 
         //add click handler for fullscreen button
         controlButton.addEventListener("click", function() {
@@ -247,9 +268,19 @@ function customcontrols(entity, options) {
 
 
       if(controlsArray[i] == "embed"){
-        var btnimg = document.createElement("img");
-        btnimg.src = "assets/controls/"+controlsArray[i]+".png"; 
-        controlButton.appendChild(btnimg);
+
+        if(control_style == "css"){
+          var shareBtn = document.createElement("div");
+          shareBtn.innerHTML = "SHARE";
+          shareBtn.className = "shareBorder";
+          controlButton.appendChild(shareBtn);
+        }else{
+          var btnimg = document.createElement("img");
+          btnimg.src = "assets/controls/"+controlsArray[i]+".png";  
+          controlButton.appendChild(btnimg); 
+        }
+        
+        
         
         //add click handler to embed button
         controlButton.addEventListener('click', function(){
@@ -308,3 +339,61 @@ function customcontrols(entity, options) {
   } //end sufficiency if      
 
 }// end customcontrols function
+
+
+function drawEmbedInterface(targetDiv, originalSize){
+
+  //have to add a whole lotta stuff here to support our embed features. let's get going
+  var defaultSize = [String(originalSize[0])+" x "+String(originalSize[1])]; 
+  var sizesDisplay = defaultSize.concat(["560 x 315", "640 x 360", "853 x 480", "1280 x 720"]);
+  var dimensionsList = [[originalSize[0], originalSize[1]], [560, 315], [640, 360], [853, 480], [1280, 720]];
+
+  var optionsHolder = document.createElement("div");
+  optionsHolder.className = "sizeList";
+
+  var iFrameArray = ["&lt;iframe width=&quot;", "&quot; height=&quot;", "&quot; src=&quot;", "&quot; frameborder=&quot;0&quot; allowfullScreen&gt;&lt;/iframe&gt;"];
+  var theURL = window.location;
+
+  var theCodeHolder = document.createElement("div");
+  theCodeHolder.className = "codeHolder";
+
+
+  for(var k=0; k<5; k++){
+    var theOption = document.createElement("div");
+    theOption.className = "embedOption";
+    theOption.innerHTML = sizesDisplay[k];
+    theOption.addEventListener("click", function(m){
+      return function(){
+      theCodeHolder.innerHTML = iFrameArray[0]+dimensionsList[m][0]+iFrameArray[1]+dimensionsList[m][1]+iFrameArray[2]+theURL+iFrameArray[3];
+        }
+      }(k));
+
+    if(k==0){
+      var event = document.createEvent("MouseEvents");
+      event.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+      theOption.dispatchEvent(event);
+    }
+    optionsHolder.appendChild(theOption);
+  }
+
+  //create close button
+  var theClose = document.createElement("div");
+  theClose.id = "embedClose";
+  targetDiv.appendChild(theClose);
+
+  theClose.addEventListener("click", function(){
+    targetDiv.style.display = targetDiv.style.display != 'none' ? 'none' : '';
+  });
+
+  targetDiv.appendChild(optionsHolder);
+  targetDiv.appendChild(theCodeHolder);
+
+ 
+
+  
+
+
+
+  console.log("hi");
+
+}
