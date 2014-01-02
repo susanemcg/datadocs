@@ -1,0 +1,293 @@
+/* It's important to make sure that any overlays have *absolute* positioning,
+	otherwise they won't position correctly in fullscreen mode */
+
+
+
+#dateline{
+    font-family: 'PT Mono', serif;
+    font-size: 18px;
+    color:#ffffff;
+    position:absolute;
+    top: 50px;
+    left: 320px;
+}
+
+#jobs_num{
+    font-family: 'PT Mono', serif;
+    font-size: 48px;
+    color:#ffffff;
+    position:absolute;
+    top: 150px;
+    left: 300px;
+}
+
+#unemp_pct{
+    font-family: 'PT Mono', serif;
+    font-size: 48px;
+    color:#ffffff;
+    position:absolute;
+    top: 275px;
+    left: 340px;
+}
+
+/* for changing the look & feel of the controls via css */
+
+.play_btn{
+	border: solid 1px white;
+	height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.pause_btn{
+	border: solid 1px white;
+	height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+}
+
+/* courtesy http://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 14px solid transparent;
+	border-bottom: 14px solid transparent;
+	border-left: 25px solid white;
+	margin-left: 42%;
+	margin-top: 2%;
+}
+
+.pauseDash{
+   	border-left: 6px solid #FFFFFF;
+    border-right: 6px solid #FFFFFF;
+    height: 75%;
+    margin-left: 42%;
+    margin-top: 3%;
+    width: 8%;
+}
+
+.cornerStyle0{
+    width:25%;
+    height:25%;
+    margin-bottom: 20%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-left: 3px solid #FFFFFF;
+    border-top: 3px solid #FFFFFF;    
+}
+
+.cornerStyle1{
+    width:25%;
+    height:25%;
+    margin-bottom: 20%;
+    margin-left:20%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-top: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;  
+}
+
+.cornerStyle2{
+    width:25%;
+    height:25%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-bottom: 3px solid #FFFFFF;
+    border-left: 3px solid #FFFFFF; 
+}
+
+.cornerStyle3{
+    width:25%;
+    height:25%;
+    margin-left: 20%;
+    position: relative;
+    float:left;
+    display: inline;
+    border-right: 3px solid #FFFFFF;
+    border-bottom: 3px solid #FFFFFF;
+}
+
+.shareBorder{
+    width:100%;
+    height:100%;
+    border: solid 3px white;
+    color:white;
+
+}
+
+/* do not modify */
+
+body{
+	background-color:#222;
+	width:100%;
+	height:600px;
+	overflow: hidden;
+	padding: 0;
+	margin:0;
+	color:#FFFFFF;
+}
+#all_info{
+	position:relative;
+	height:450px;
+	width:800px;
+	margin:0 auto;	
+	padding:0px;
+	background-color: #222222;	
+}
+#contentContainer{
+	width:100%;
+	text-align:center;
+	position:relative;
+	height:100%;
+	top:100px;
+	
+}
+#play_pause_button{
+	width:16%;
+	height:30px;
+	background-color:black;
+	position:relative;
+	float:left;
+	display:inline;
+	padding-top: 1%;
+	cursor: pointer;
+}
+#time_count{
+    background-color:black;
+    color:#fff;
+    display: inline;
+    float: left;
+    font-family: Arial;
+    font-size: 15px;
+    height: 30px;
+    margin-left:1%;
+    padding-left: 1%;
+    padding-top: 1%;
+    position: relative;
+    width: 11%;
+}
+#fullscreen_button{
+	width:7%;
+	height:30px;
+	position:relative;
+	background-color:black;
+	float:left;
+	display:inline;
+	margin-left: 1%;
+	padding-top: 1%;
+	cursor: pointer;
+}
+#embed_code{
+   background-color: #333333;
+    border: 3px solid #FFFFFF;
+    color: #FFFFFF;
+    font-family: Arial;
+    height: 1200%;
+    left: 5%;
+    position: absolute;
+    top: -1500%;
+    width: 80%;
+    padding:30px;
+}
+.codeHolder{
+    position: relative;
+    display: inline;
+    float: left;
+    width:60%;
+    height:140px;
+    border:solid 1px white;
+    margin-left: 20px;
+}
+
+#embedClose{
+    position:absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    top: 5%;
+    left: 95%;
+    cursor: pointer;
+}
+
+.embedOption{
+    font-family: Arial, sans-serif;
+    color:#fff;
+    border: solid 1px white;
+    width: 100%;
+    height: 20%;
+    position:relative;
+    display:inline;
+    float: left;
+    cursor: pointer;
+}
+.sizeList{
+    width: 100px;
+    height: 130px;
+    position: relative;
+    display:inline;
+    float:left;
+}
+
+#embed_button{
+	width:8%;
+	height:30px;
+	position:relative;
+	background-color:black;
+	float:left;
+	display:inline;
+	margin-left: 1%;
+	padding-top: 1%;
+	cursor: pointer;
+}
+#scrubber {
+        position: relative;
+        width: 51%;
+        height: 38px;
+        float: left;
+        display: inline;
+        background-color:black;
+        margin-left: 1%;
+        padding-left:1%;
+        padding-right:1%;
+    }
+    #progressBackground{
+    	width: 100%;
+        height: 20px;
+        display: inline;
+        float:left;
+        background-color:#222;
+        margin-top: 8px;
+        cursor: pointer;
+
+    }
+    #progress {
+        width: 0;
+        height: 20px;
+        display: inline;
+        float:left;
+        background-color:#F9F9F9;
+        margin-top:10px;
+    }
+#custom_controls{
+    height: 24px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    z-index: 1002;	
+}
+#overlays{
+	width:100%;
+	height:100%;
+	top:0px;
+	position:absolute;
+	margin:0 auto;	
+	background-color: transparent;
+}

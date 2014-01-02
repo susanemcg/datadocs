@@ -1,0 +1,48 @@
+{ "flex_text":{
+	"stylesheet":{
+		"fontFamily":"'PT Mono', sans-serif",
+		"fontSize":40
+		},
+	"text_blocks":[
+		{
+		"top_left":[328,50],
+		"start_end":[8,13],
+		"text_list":[
+			{
+				"text":"50,000"
+			},
+			{
+				"text":"households per month",
+				"fontSize":20
+			}
+			]
+		},
+		{
+		"top_left":[328,50],
+		"start_end":[19,22],
+		"text_list":[
+			{
+				"text":"140,000"
+			},
+			{
+				"text":"businesses and agencies",
+				"fontSize":20
+			}
+			]
+		},
+		{
+		"top_left":[328,50],
+		"start_end":[23,26],
+		"text_list":[
+			{
+				"text":"440,000"
+			},
+			{
+				"text":"individual work sites",
+				"fontSize":20
+			}
+			]
+		}
+		]
+	}
+}
