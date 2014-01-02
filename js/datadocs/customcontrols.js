@@ -270,10 +270,8 @@ function customcontrols(entity, options) {
       if(controlsArray[i] == "embed"){
 
         if(control_style == "css"){
-          var shareBtn = document.createElement("div");
-          shareBtn.innerHTML = "SHARE";
-          shareBtn.className = "shareBorder";
-          controlButton.appendChild(shareBtn);
+          controlButton.innerHTML = "SHARE";
+          controlButton.className = "shareBorder";
         }else{
           var btnimg = document.createElement("img");
           btnimg.src = "assets/controls/"+controlsArray[i]+".png";  
@@ -343,6 +341,10 @@ function customcontrols(entity, options) {
 
 function drawEmbedInterface(targetDiv, originalSize){
 
+
+  //possible approach for "copy to clipboard" - non-trivial without Flash at this point
+  //http://stackoverflow.com/questions/17527870/how-does-trello-access-the-users-clipboard
+
   //have to add a whole lotta stuff here to support our embed features. let's get going
   var defaultSize = [String(originalSize[0])+" x "+String(originalSize[1])]; 
   var sizesDisplay = defaultSize.concat(["560 x 315", "640 x 360", "853 x 480", "1280 x 720"]);
@@ -388,12 +390,5 @@ function drawEmbedInterface(targetDiv, originalSize){
   targetDiv.appendChild(optionsHolder);
   targetDiv.appendChild(theCodeHolder);
 
- 
-
-  
-
-
-
-  console.log("hi");
 
 }
