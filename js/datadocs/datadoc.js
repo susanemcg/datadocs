@@ -78,7 +78,7 @@
       }else{
 
         text_el.style.fontFamily = new String(theStyle.font);
-
+        text_el.style.textAlign = theStyle.align;
         text_el.style.fontSize = theStyle.size+'px';
         text_el.innerHTML = textString;
       }
@@ -92,6 +92,8 @@
       var theFont = theJSON.stylesheet.fontFamily;
 
       var theSize = theJSON.stylesheet.fontSize;
+
+      var theAlign = theJSON.stylesheet.textAlign ? theJSON.stylesheet.textAlign : "left";
 
       var numBlocks = theJSON.text_blocks;
 
@@ -125,6 +127,7 @@
           var styleObj = {};
           styleObj.font = text_elems[j].fontFamily ? text_elems[j].fontFamily : theFont;
           styleObj.size = text_elems[j].fontSize ? text_elems[j].fontSize : theSize;
+          styleObj.align = text_elems[j].textAlign ? text_elems[j].textAlign: theAlign;
 
           blockDiv.appendChild(this.buildFlex(text_elems[j].text, styleObj));
 
