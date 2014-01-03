@@ -1,0 +1,102 @@
+/* It's important to make sure that any overlays have *absolute* positioning,
+	otherwise they won't position correctly in fullscreen mode */
+
+
+
+#title_text{
+    color: #FFFFFF;
+    font-family: 'PT Mono',serif;
+    font-size: 28px;
+    left: 200px;
+    position: absolute;
+    top: 20px;
+}
+
+#budget_text{
+    font-family: 'PT Mono', serif;
+    font-size: 24px;
+    color:#ffffff;
+    position:absolute;
+    top: 275px;
+    left: 45px;
+    width:250px;
+}
+
+#policy_text{
+    color: #FFFFFF;
+    font-family: 'PT Mono',serif;
+    font-size: 24px;
+    left: 305px;
+    position: absolute;
+    top: 275px;
+    width: 200px;
+}
+
+#politics_text{
+    color: #FFFFFF;
+    font-family: 'PT Mono',serif;
+    font-size: 24px;
+    left: 545px;
+    position: absolute;
+    top: 275px;
+    width: 200px;
+}
+
+/*
+http://css-tricks.com/3d-text-tower/
+*/
+
+.shadow { 
+   text-shadow: 1px 1px #333, 
+                2px 2px #333, 
+                3px 3px #333;
+}
+.shadow:hover {
+   position: relative; 
+   top: -3px; 
+   left: -3px; 
+   text-shadow: 1px 1px #333, 
+                2px 2px #333, 
+                3px 3px #333, 
+                4px 4px #333, 
+                5px 5px #333, 
+                6px 6px #333;
+}
+
+
+/*
+http://www.sitepoint.com/css3-glowing-link-effect/
+*/
+.glow, .glow:hover, .glow:focus
+{
+    text-decoration: none;
+    text-shadow: none;
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+    outline: 0 none;
+}
+
+.glow:hover, .glow:focus
+{
+    color: #fff;
+    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}
+
+/*
+http://css-tricks.com/adding-stroke-to-web-text/
+*/
+
+.outline{
+   text-shadow: -1px -1px 0 #0075FB,  
+                1px -1px 0 #0075FB,
+                -1px 1px 0 #0075FB,
+                1px 1px 0 #0075FB;
+ }
+
+ .outline:hover {
+    text-decoration:;
+ }
+
+
