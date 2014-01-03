@@ -264,3 +264,9 @@ body{
 	margin:0 auto;	
 	background-color: transparent;
 }
+.revealWrap{
+    text-align:left;
+    display: block;
+    float: none;
+    position: relative;
+}
