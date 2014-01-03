@@ -96,6 +96,23 @@
             revealCSS = revealDiv.currentStyle || getComputedStyle(revealDiv,null);
             redisplayType = revealCSS.display;
 
+        }else if( ( options._container.className ).indexOf( 'revealWrap' ) == -1 ){
+        //this means we're dealing with "normal" text. segments to be revealed successively should be pipe-separated
+        //we check for the "revealWrap" class in case the user rewinds. without this check, the text will
+        //be "divided" twice, leaving it all jammed up together.
+
+          var revealContents = revealDiv.textContent;
+          var revealArray = revealContents.split("|");
+          revealDiv.innerHTML = "";
+          revealDiv.className = "revealWrap";
+          
+          for (var p=0; p<revealArray.length; p++){
+            var wrapperDiv = document.createElement("div");
+            wrapperDiv.className = "revealWrap";
+            wrapperDiv.innerHTML = revealArray[p];
+            revealDiv.appendChild(wrapperDiv);
+          }
+
         }
 
         //make the main/parent container visible
