@@ -1,0 +1,19 @@
+/* It's important to make sure that any overlays have *absolute* positioning,
+	otherwise they won't position correctly in fullscreen mode */
+
+#numbers_snippet{
+    font-family: 'PT Mono', serif;
+    font-size: 72px;
+    color:#ffffff;
+    position:absolute;
+    top: 50px;
+    left: 20px;
+}
+#policy_snippet{
+    font-family: 'PT Mono', serif;
+    font-size: 72px;
+    color:#ffffff;
+    position:absolute;
+    top: 50px;
+    left: 20px;
+}
