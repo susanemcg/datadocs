@@ -1,0 +1,184 @@
+{
+    "realtime_start": "2014-01-10",
+    "realtime_end": "2014-01-10",
+    "observation_start": "2007-01-01",
+    "observation_end": "9999-12-31",
+    "units": "lin",
+    "output_type": 1,
+    "file_type": "json",
+    "order_by": "observation_date",
+    "sort_order": "asc",
+    "count": 28,
+    "offset": 0,
+    "limit": 100000,
+    "observations": [
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2007-01-01",
+            "value": "8.2"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2007-04-01",
+            "value": "8.2"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2007-07-01",
+            "value": "8.4"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2007-10-01",
+            "value": "8.5"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2008-01-01",
+            "value": "9.1"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2008-04-01",
+            "value": "9.7"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2008-07-01",
+            "value": "10.8"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2008-10-01",
+            "value": "12.7"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2009-01-01",
+            "value": "15.1"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2009-04-01",
+            "value": "16.3"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2009-07-01",
+            "value": "16.6"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2009-10-01",
+            "value": "17.1"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2010-01-01",
+            "value": "16.9"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2010-04-01",
+            "value": "16.7"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2010-07-01",
+            "value": "16.6"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2010-10-01",
+            "value": "16.7"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2011-01-01",
+            "value": "16.0"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2011-04-01",
+            "value": "16.0"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2011-07-01",
+            "value": "16.1"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2011-10-01",
+            "value": "15.6"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2012-01-01",
+            "value": "14.9"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2012-04-01",
+            "value": "14.7"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2012-07-01",
+            "value": "14.8"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2012-10-01",
+            "value": "14.4"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2013-01-01",
+            "value": "14.2"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2013-04-01",
+            "value": "14.0"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2013-07-01",
+            "value": "13.7"
+        },
+        {
+            "realtime_start": "2014-01-10",
+            "realtime_end": "2014-01-10",
+            "date": "2013-10-01",
+            "value": "13.3"
+        }
+    ]
+}

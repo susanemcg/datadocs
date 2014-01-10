@@ -1,0 +1,25 @@
+/* It's important to make sure that any overlays have *absolute* positioning,
+	otherwise they won't position correctly in fullscreen mode */
+
+
+#u3Chart{
+    color: #FFFFFF;
+    font-family: 'PT Mono',serif;
+    font-size: 22px;
+    left: 20px;
+    position: absolute;
+    top: 20px;
+    text-align: left;
+}
+
+
+#u6Chart{
+    color: #FFFFFF;
+    font-family: 'PT Mono',serif;
+    font-size: 22px;
+    left: 20px;
+    position: absolute;
+    top: 20px;
+    text-align: left;
+}
+
