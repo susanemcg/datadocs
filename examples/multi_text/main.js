@@ -10,7 +10,8 @@ $(document).ready(function(){
 data_doc = DataDoc({"video_id": "datadocsvid", "fullscreen_id": "all_info", "embed_id":"embed_code"}, {"control_style":"css"});
 
 
-/*	jQuery ajax get request for our "text_labels" JSON file */
+/*	jQuery ajax get request for our "text_labels" JSON file 
+	change the filename below to match your own json filename, if different */
 
 $.get('assets/data/text_labels.json', addLabelData, 'json');
 

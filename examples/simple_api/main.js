@@ -34,6 +34,7 @@ the_overlays.appendChild(weeklyUnempHolder);
 	the video reaches the timestamp specified in addSalt.
 
 */
+
 data_doc.addSalt({
 	start:8,
 	end:30,
