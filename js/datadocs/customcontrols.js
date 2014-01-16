@@ -46,7 +46,8 @@ function customcontrols(entity, options) {
       //for each child node, we need to keep track of: a) the element, b) original width and c) original height
       for (i=0; i<elementsToScale.length; i++){
 
-        if(elementsToScale[i].nodeName != "#text"){
+        //make sure that we're not trying to scale the text or comment nodes that may be inside the fullscreen div
+        if(elementsToScale[i].nodeName != "#text" && elementsToScale[i].nodeName != "#comment"){
           elemCSS = elementsToScale[i].currentStyle || getComputedStyle(elementsToScale[i],null);
 
           //fullscreen means appropriately scaling non-video; here, calculate transform and create new style on the document
