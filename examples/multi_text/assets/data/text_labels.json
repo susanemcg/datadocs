@@ -13,7 +13,8 @@
 			},
 			{
 				"text":"households per month",
-				"fontSize":20
+				"fontSize":20,
+				"fontFamily":"Ribeye"
 			}
 			]
 		},
