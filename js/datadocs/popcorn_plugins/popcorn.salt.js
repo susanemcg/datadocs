@@ -83,7 +83,6 @@
      
     start: function( event, options ){
   
-
       if ( options.has_reveal == "true" ) {          
            
         //if reveal option is set, create references to div and display style...  
@@ -130,7 +129,6 @@
         }
            
       } else {
-       
        //display div with original display type
         options._container.style.display = options._displayType;  
 

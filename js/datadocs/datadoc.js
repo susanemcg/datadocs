@@ -104,32 +104,58 @@
 
         //every block is a single parent div
         var blockDiv = document.createElement("div");
-        blockDiv.id = numBlocks[i].divID ? numBlocks[i].divID : "flex_text_"+i;
+        blockDiv.id = blockData.divID ? blockData.divID : "flex_text_"+i;
         blockDiv.style.position = "absolute";
-        blockDiv.style.top = numBlocks[i].top_left[0]+"px";
-        blockDiv.style.left = numBlocks[i].top_left[1]+"px";
+        blockDiv.style.top = blockData.top_left[0]+"px";
+        blockDiv.style.left = blockData.top_left[1]+"px";
 
         //add block div to page
         this.overlay.appendChild(blockDiv);
 
-        //call salt plugin
         this.addSalt({
-          "start":numBlocks[i].start_end[0],
-          "end":numBlocks[i].start_end[1],
+          "start":blockData.start_end[0],
+          "end":blockData.start_end[1],
           "target":blockDiv.id
         });
 
         var text_elems = blockData.text_list; 
+
         //get each element in the text block
         for(var j=0; j<text_elems.length; j++){
 
+          var textBit = text_elems[j];
+
           //create the style object for this 
           var styleObj = {};
-          styleObj.font = text_elems[j].fontFamily ? text_elems[j].fontFamily : theFont;
-          styleObj.size = text_elems[j].fontSize ? text_elems[j].fontSize : theSize;
-          styleObj.align = text_elems[j].textAlign ? text_elems[j].textAlign: theAlign;
+          styleObj.font = textBit.fontFamily ? textBit.fontFamily : theFont;
+          styleObj.size = textBit.fontSize ? textBit.fontSize : theSize;
+          styleObj.align = textBit.textAlign ? textBit.textAlign: theAlign;
 
-          blockDiv.appendChild(this.buildFlex(text_elems[j].text, styleObj));
+          var lineDiv = this.buildFlex(textBit.text, styleObj);
+          lineDiv.id = "dd_text_"+i+j;
+          blockDiv.appendChild(lineDiv);
+
+
+          //call salt plugin
+          if(textBit.reveal_timeout){
+            this.addSalt({
+              "start":blockData.start_end[0],
+              "end":blockData.start_end[1],
+              "target":"dd_text_"+i+j,
+              "has_reveal":"true",
+              "reveal_timeout":textBit.reveal_timeout
+            });
+          }else{
+            this.addSalt({
+              "start":blockData.start_end[0],
+              "end":blockData.start_end[1],
+              "target":"dd_text_"+i+j
+            });
+
+
+          }
+
+          
 
         }
 

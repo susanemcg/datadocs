@@ -26,8 +26,9 @@
 				"text":"140,000"
 			},
 			{
-				"text":"businesses and agencies",
-				"fontSize":20
+				"text":"businesses| and |agencies",
+				"fontSize":20, 
+				"reveal_timeout":300
 			}
 			]
 		},
