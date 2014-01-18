@@ -28,3 +28,7 @@ function addLabelData(data){
 	data_doc.addOverlays("labels", data);	
 
 }
+
+function pop_message(event, params){
+	alert(params.alert_msg);
+}

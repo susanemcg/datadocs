@@ -8,3 +8,23 @@
 .revealWrap{
     float:left;
 }
+
+/*
+http://www.sitepoint.com/css3-glowing-link-effect/
+*/
+.glow, .glow:hover, .glow:focus
+{
+    text-decoration: none;
+    text-shadow: none;
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+    outline: 0 none;
+}
+
+.glow:hover, .glow:focus
+{
+    color: #fff;
+    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}

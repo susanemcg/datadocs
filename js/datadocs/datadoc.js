@@ -136,30 +136,47 @@
           blockDiv.appendChild(lineDiv);
 
 
-          //call salt plugin
-          if(textBit.reveal_timeout){
-            this.addSalt({
-              "start":blockData.start_end[0],
-              "end":blockData.start_end[1],
-              "target":"dd_text_"+i+j,
-              "has_reveal":"true",
-              "reveal_timeout":textBit.reveal_timeout
-            });
-          }else{
-            this.addSalt({
-              "start":blockData.start_end[0],
-              "end":blockData.start_end[1],
-              "target":"dd_text_"+i+j
-            });
+          //begin building object to pass to "addSalt" method
+          var saltObj = {"start":blockData.start_end[0], "end":blockData.start_end[1],"target":lineDiv.id};
 
+          if(textBit.reveal_timeout){
+            saltObj.has_reveal = "true";
+            saltObj.reveal_timeout = textBit.reveal_timeout;
+          }
+
+          this.addSalt(saltObj);
+
+          //check for addCaramel parameters, and build object if present  
+          if(textBit.url || textBit.function_name){
+            var caramelObj = {"target":lineDiv.id};
+
+            if(textBit.url){
+              caramelObj.url = textBit.url;
+            }
+
+            if(textBit.function_name){
+              caramelObj.function_name = textBit.function_name;
+            }
+
+            if(textBit.function_params){
+              caramelObj.function_params = textBit.function_params;
+            }
+
+            this.addCaramel(caramelObj);
 
           }
 
-          
+          // STILL NEED TO ADD 'class' PARAMETER HANDLING
 
-        }
+          if(textBit.class){
+            lineDiv.classList.add(textBit.class);
+          }
 
-      }
+
+
+        }//end for [j]
+
+      }//end for [i]
 
     },
 

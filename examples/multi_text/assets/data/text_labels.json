@@ -37,11 +37,15 @@
 		"start_end":[23,26],
 		"text_list":[
 			{
-				"text":"440,000"
+				"text":"440,000",
+				"function_name": "pop_message",
+				"function_params": {"alert_msg": "Clicking launched a pop up"}
 			},
 			{
 				"text":"individual work sites",
-				"fontSize":20
+				"fontSize":20,
+				"url": "http://www.datadocs.org/beta",
+				"class": "glow"
 			}
 			]
 		}
