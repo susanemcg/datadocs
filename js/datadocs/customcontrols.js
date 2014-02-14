@@ -354,6 +354,23 @@ function drawEmbedInterface(targetDiv, originalSize){
   var optionsHolder = document.createElement("div");
   optionsHolder.className = "sizeList";
 
+  var arrowButton = document.createElement("div");
+  arrowButton.className = "arrow-down";
+
+  var arrowHolder = document.createElement("div");
+  arrowHolder.className = "outline-box";
+
+  arrowHolder.appendChild(arrowButton);
+  arrowHolder.addEventListener("click", function(){
+    var theOptions = optionsHolder.children;
+
+    for(var l=2; l<5; l++){
+
+      console.log("what?")
+      theOptions[l].className = "embedOption optionFade";
+
+    }  
+  });
   var iFrameArray = ["&lt;iframe width=&quot;", "&quot; height=&quot;", "&quot; src=&quot;", "&quot; frameborder=&quot;0&quot; allowfullScreen&gt;&lt;/iframe&gt;"];
   var theURL = window.location;
 
@@ -367,16 +384,31 @@ function drawEmbedInterface(targetDiv, originalSize){
     theOption.innerHTML = sizesDisplay[k];
     theOption.addEventListener("click", function(m){
       return function(){
+      
+
       theCodeHolder.innerHTML = iFrameArray[0]+dimensionsList[m][0]+iFrameArray[1]+dimensionsList[m][1]+iFrameArray[2]+theURL+iFrameArray[3];
+        var theOptions = optionsHolder.children;
+
+          for(var l=2; l<5; l++){
+
+            //theOptions[l].className = "embedOption";
+            //theOptions[l].style.display = "none";
+
+          }
+
         }
       }(k));
 
+    optionsHolder.appendChild(theOption);
     if(k==0){
       var event = document.createEvent("MouseEvents");
       event.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
       theOption.dispatchEvent(event);
+      optionsHolder.appendChild(arrowHolder);
+    }else{
+      theOption.className += " noOp";
     }
-    optionsHolder.appendChild(theOption);
+    
   }
 
   //create close button
