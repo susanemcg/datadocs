@@ -20,9 +20,10 @@
       
       var that = this;
 
-      if(options.data_url){
-        $.get(options.data_url, function (data){
-          that.addOverlays("labels", data);
+      if(options.text_url){
+        var styleObj = {"fontFamily": options.fontFamily, "fontSize":options.fontSize};
+        $.get(options.text_url, function (data){
+          that.addOverlays("labels", data, styleObj);
         }, 'json');
       }
 
@@ -67,20 +68,19 @@
       }
     },
 
-    addOverlays : function(overlayType, jsonObj){
+    addOverlays : function(overlayType, jsonObj, theStyle){
 
       this.awaitJSON = "COMPLETE";
       if(this.video.readyState() == 4){
         document.getElementById("loader_gif").style.display = "none";
       }
       if(overlayType == "labels"){
-        //let's start by handling MVP text
 
         var json_data = jsonObj;
         //need to test what kind of json we have 
         if(jsonObj.kind){
 
-        json_data = this.transformJSON(jsonObj);
+        json_data = this.transformJSON(jsonObj, theStyle);
 
         }
 
@@ -93,15 +93,12 @@
 
     },
 
-    transformJSON : function(data){
+    transformJSON : function(data, styles){
 
       var numRows = data.rows.length;
 
-      var someJSON = {"flex_text":{
-          "stylesheet":{
-          "fontFamily":"'PT Mono', sans-serif",
-          "fontSize":40
-          }}};
+      var someJSON = {"flex_text": {}};
+          someJSON.flex_text.stylesheet = styles;
 
       var textArray = [];
 
@@ -109,7 +106,15 @@
         var textObj = {};
             textObj.top_left = [Number(data.rows[i][1]), Number(data.rows[i][2])];
             textObj.start_end = [Number(data.rows[i][3]),Number(data.rows[i][4])];
-            textObj.text_list = [{"text":data.rows[i][0]}]
+            textObj.text_list = [{"text":data.rows[i][0]}];
+
+            if(data.rows[i][5] != ""){
+              textObj.text_list[0].fontSize = Number(data.rows[i][5]); 
+            }
+
+            if(data.rows[i][6] != ""){
+              textObj.text_list[0].fontFamily = data.rows[i][6]; 
+            }
 
             textArray.push(textObj);
       }
@@ -146,7 +151,6 @@
 
       var theAlign = theJSON.stylesheet.textAlign ? theJSON.stylesheet.textAlign : "left";
 
-      console.log(theJSON);
       var numBlocks = theJSON.text_blocks;
 
       //get each text block in the list
@@ -179,6 +183,7 @@
 
           //create the style object for this 
           var styleObj = {};
+
           styleObj.font = textBit.fontFamily ? textBit.fontFamily : theFont;
           styleObj.size = textBit.fontSize ? textBit.fontSize : theSize;
           styleObj.align = textBit.textAlign ? textBit.textAlign: theAlign;
