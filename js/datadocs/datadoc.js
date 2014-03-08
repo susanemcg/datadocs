@@ -17,17 +17,29 @@
     init : function( entity, fullscreen_container_id, embed_div, options ) {
 
       this.video = Popcorn("#"+entity);
+      
+      var that = this;
+
+      if(options.data_url){
+        $.get(options.data_url, function (data){
+          that.addOverlays("labels", data);
+        }, 'json');
+      }
+
       this.pauseBtnID = "#pause_button";
       this.overlay = document.getElementById("overlays");
 
       this["video"] = this.video; //expose the video property so it can be accessed by external scripts
 
+
       var hasCSS = null;
+      this.awaitJSON = null;
       if(options){
         hasCSS = options.control_style;
+        this.awaitJSON = options.data_url == undefined ? false : true;
       }
 
-      customcontrols(this["video"].video, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div, "control_style":hasCSS});
+      customcontrols(this["video"].video, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div, "control_style":hasCSS}, this);
 
       this["customcontrols"] = true;
 
@@ -57,6 +69,10 @@
 
     addOverlays : function(overlayType, jsonObj){
 
+      this.awaitJSON = "COMPLETE";
+      if(this.video.readyState() == 4){
+        document.getElementById("loader_gif").style.display = "none";
+      }
       if(overlayType == "labels"){
         //let's start by handling MVP text
         this.addFlexText(jsonObj.flex_text, this.overlay, this);

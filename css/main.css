@@ -193,6 +193,12 @@ margin-top: 24%
 
 /* do not modify */
 
+#loader_gif{
+    position:absolute;
+    top:35%;
+    left:40%;
+}
+
 body{
 	background-color:#222;
 	width:100%;

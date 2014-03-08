@@ -1,4 +1,4 @@
-function customcontrols(entity, options) {
+function customcontrols(entity, options, data_doc_instance) {
   var thevideo = entity;
 
   var options = options || {}; // if options were passed, use those; otherwise, make empty so tests don't throw errors
@@ -170,9 +170,14 @@ function customcontrols(entity, options) {
 
         //click handler for play button
         playbtn.addEventListener("click", function(){
-          thevideo.play();
-          this.style.display = "none";
-          pausebtn.style.display = "block";
+
+          if(data_doc_instance.video.readyState() == 4  && (data_doc_instance.awaitJSON == false || data_doc_instance.awaitJSON == "COMPLETE")){
+            
+            document.getElementById("loader_gif").style.display = "none";
+            thevideo.play();
+            this.style.display = "none";
+            pausebtn.style.display = "block";
+        }
         });
 
         //click handler for pause button
