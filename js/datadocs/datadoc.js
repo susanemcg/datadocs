@@ -75,12 +75,47 @@
       }
       if(overlayType == "labels"){
         //let's start by handling MVP text
-        this.addFlexText(jsonObj.flex_text, this.overlay, this);
+
+        var json_data = jsonObj;
+        //need to test what kind of json we have 
+        if(jsonObj.kind){
+
+        json_data = this.transformJSON(jsonObj);
+
+        }
+
+        this.addFlexText(json_data.flex_text, this.overlay, this);
       }
       if(overlayType == "charts"){
         //and first generation Data Docs charts
         this.addChalkboardCharts(jsonObj.graph_list); 
       }
+
+    },
+
+    transformJSON : function(data){
+
+      var numRows = data.rows.length;
+
+      var someJSON = {"flex_text":{
+          "stylesheet":{
+          "fontFamily":"'PT Mono', sans-serif",
+          "fontSize":40
+          }}};
+
+      var textArray = [];
+
+      for(var i=0; i<numRows; i++){
+        var textObj = {};
+            textObj.top_left = [Number(data.rows[i][1]), Number(data.rows[i][2])];
+            textObj.start_end = [Number(data.rows[i][3]),Number(data.rows[i][4])];
+            textObj.text_list = [{"text":data.rows[i][0]}]
+
+            textArray.push(textObj);
+      }
+
+      someJSON.flex_text.text_blocks = textArray;
+      return(someJSON);
 
     },
 
@@ -111,6 +146,7 @@
 
       var theAlign = theJSON.stylesheet.textAlign ? theJSON.stylesheet.textAlign : "left";
 
+      console.log(theJSON);
       var numBlocks = theJSON.text_blocks;
 
       //get each text block in the list

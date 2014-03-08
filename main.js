@@ -13,9 +13,9 @@ data_doc = DataDoc({
 	    "embed_id": "embed_code"
 	},
 	{
-	    "control_style": "css",
-	    "data_url": "assets/data/text_labels.json"
+	    "control_style": "css", 
+	    "data_url": "https://www.googleapis.com/fusiontables/v1/query/?sql=SELECT+*+FROM+1qkVkd0TktLEEuUJjDZfPkbs0XTa_cC2XzUtqNoiS&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ"
 	});
 
-
+//assets/data/text_labels.json
 }, false);
