@@ -40,6 +40,16 @@
         this.awaitJSON = options.data_url == undefined ? false : true;
       }
 
+        
+      if(this.awaitJSON == false){
+        var readyTimer = setTimeout(function(){
+          if(that.video.readyState() == 4){
+            document.getElementById("loader_gif").style.display = "none";
+            clearTimeout(readyTimer);
+          }
+        }, 100);
+      }
+
       customcontrols(this["video"].video, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div, "control_style":hasCSS}, this);
 
       this["customcontrols"] = true;
