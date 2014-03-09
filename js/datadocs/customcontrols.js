@@ -310,9 +310,13 @@ function customcontrols(entity, options, data_doc_instance) {
   
     var totalTime; // because this.duration changes as the video progresses, keep a reference to the total length of the video
 
-
     //the "timeUpdate" function, which updates the numerical display of where we are in the video
     thevideo.addEventListener("timeupdate", function(e){
+
+      if(isNaN(totalTime)){
+        totalTime = this.duration;
+      }
+
       timediv.innerHTML = formatTime(this.currentTime)+"/"+formatTime(totalTime);
       progressBar.style.width = ((this.currentTime / totalTime) * 100) + "%";
     }); //end timeupdate handler
@@ -320,7 +324,14 @@ function customcontrols(entity, options, data_doc_instance) {
     // the metadata of the video, which includes the total duration, loads earliest
     thevideo.addEventListener("loadedmetadata", function (e) {
       totalTime = this.duration;
-      timediv.innerHTML = "0:00/"+formatTime(totalTime);
+
+      if(isNaN(totalTime)){
+
+        timediv.innerHTML = "0:00/?:??";
+
+      } else {
+        timediv.innerHTML = "0:00/"+formatTime(totalTime);
+      }
     }); //end loadedmetadata handler
 
     //add hand cursor to scrub bar
