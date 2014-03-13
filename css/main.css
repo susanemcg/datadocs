@@ -6,7 +6,6 @@
 /* for changing the look & feel of the controls via css */
 
 .play_btn{
-	border: solid 1px white;
 	height: 100%;
     left: 0;
     position: absolute;
@@ -15,7 +14,6 @@
 }
 
 .pause_btn{
-	border: solid 1px white;
 	height: 100%;
     left: 0;
     position: absolute;
@@ -28,9 +26,9 @@
 .arrow-right {
 	width: 0; 
 	height: 0; 
-	border-top: 14px solid transparent;
-	border-bottom: 14px solid transparent;
-	border-left: 25px solid white;
+	border-top: 12px solid transparent;
+	border-bottom: 12px solid transparent;
+	border-left: 20px solid white;
 	margin-left: 42%;
 	margin-top: 2%;
 }
@@ -47,8 +45,9 @@
 .cornerStyle0{
     width:25%;
     height:25%;
-    margin-bottom: 20%;
+    margin-top: -5%;
     position: relative;
+    margin-left:10%;
     float:left;
     display: inline;
     border-left: 3px solid #FFFFFF;
@@ -58,7 +57,7 @@
 .cornerStyle1{
     width:25%;
     height:25%;
-    margin-bottom: 20%;
+    margin-top: -5%;
     margin-left:20%;
     position: relative;
     float:left;
@@ -72,9 +71,11 @@
     height:25%;
     position: relative;
     float:left;
+    margin-left:10%;
     display: inline;
     border-bottom: 3px solid #FFFFFF;
     border-left: 3px solid #FFFFFF; 
+    margin-top: 10%;
 }
 
 .cornerStyle3{
@@ -86,12 +87,12 @@
     display: inline;
     border-right: 3px solid #FFFFFF;
     border-bottom: 3px solid #FFFFFF;
+    margin-top: 10%;
 }
 
 .shareBorder{
     width:100%;
     height:100%;
-    border: solid 1px white;
     color:white;
 
 }
@@ -180,9 +181,9 @@ margin-top: 24%
 
 #embed_button{
     width:8%;
-    height:30px;
+    height:100%;
     position:relative;
-    background-color:black;
+    background-color:#000;
     float:left;
     display:inline;
     margin-left: 1%;
@@ -227,8 +228,8 @@ body{
 }
 #play_pause_button{
 	width:16%;
-	height:30px;
-	background-color:black;
+	height:100%;
+	background-color:#000;
 	position:relative;
 	float:left;
 	display:inline;
@@ -236,12 +237,12 @@ body{
 	cursor: pointer;
 }
 #time_count{
-    background-color:black;
+    background-color:#000;
     color:#fff;
     display: inline;
     float: left;
     font-size: 15px;
-    height: 30px;
+    height: 100%;
     margin-left:1%;
     padding-left: 1%;
     padding-top: 1%;
@@ -250,26 +251,27 @@ body{
 }
 #fullscreen_button{
 	width:6%;
-	height:30px;
+	height:100%;
 	position:relative;
-	background-color:black;
+	background-color:#000;
 	float:left;
 	display:inline;
 	margin-left: 1%;
-	padding-top: 1%;
 	cursor: pointer;
+    padding-top: 1%;
 }
 
 #scrubber {
         position: relative;
         width: 51%;
-        height: 38px;
+        height: 100%;
         float: left;
         display: inline;
-        background-color:black;
+        background-color:#000;
         margin-left: 1%;
         padding-left:1%;
         padding-right:1%;
+        padding-top: 1%;
     }
     #progressBackground{
     	width: 100%;
@@ -287,7 +289,6 @@ body{
         display: inline;
         float:left;
         background-color:#F9F9F9;
-        margin-top:10px;
     }
 #custom_controls{
     height: 24px;

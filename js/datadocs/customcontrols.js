@@ -246,7 +246,7 @@ function customcontrols(entity, options, data_doc_instance) {
               var elem = scalingElements[j].elem;
               if(elem === controls_div){ //in case of controls div, only adjust width & top position
                 controls_div.style.width = scalingElements[j].width;
-                controls_div.style.top = "-10%";
+                controls_div.style.top = "-7%";
               }else{
                 //this else clause should handle the video and the overlays div
                 scalingElements[j].elem.style.width = scalingElements[j].width;
