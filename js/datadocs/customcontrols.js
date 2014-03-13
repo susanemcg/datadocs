@@ -171,7 +171,7 @@ function customcontrols(entity, options, data_doc_instance) {
         //click handler for play button
         playbtn.addEventListener("click", function(){
 
-          if(data_doc_instance.video.readyState() == 4  && (data_doc_instance.awaitJSON == false || data_doc_instance.awaitJSON == "COMPLETE")){
+          if(data_doc_instance.video.readyState() == 4  && (data_doc_instance.awaitJSON == false || data_doc_instance.awaitJSON == "COMPLETE") && data_doc_instance.numIFrames == 0){
             
             document.getElementById("loader_gif").style.display = "none";
             thevideo.play();

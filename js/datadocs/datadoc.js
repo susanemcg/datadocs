@@ -35,6 +35,24 @@
 
       var hasCSS = null;
       this.awaitJSON = null;
+      
+
+      var included_frames = document.getElementsByTagName('iframe');
+      this.numIFrames = included_frames.length;
+
+
+      if(this.numIFrames > 0){
+        for(var i=0; i<included_frames.length; i++){
+          var aFrame = included_frames[i];
+            $(aFrame).load(function(i){
+              
+              return function(){
+              that.numIFrames--;
+            }
+            }(i));
+        }
+      }
+
       if(options){
         hasCSS = options.control_style;
         this.awaitJSON = options.data_url == undefined ? false : true;
@@ -42,10 +60,10 @@
 
         
       if(this.awaitJSON == false){
-        var readyTimer = setTimeout(function(){
-          if(that.video.readyState() == 4){
+        var readyTimer = setInterval(function(){
+          if(that.video.readyState() == 4 && that.numIFrames == 0){
             document.getElementById("loader_gif").style.display = "none";
-            clearTimeout(readyTimer);
+            clearInterval(readyTimer);
           }
         }, 100);
       }
