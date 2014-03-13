@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="../../../../js/thirdparty/jquerymin.js"></script>
+        <script type="text/javascript" src="../../../../js/datadocs/utils.js"></script>
+		<script type="text/javascript">
+
+        function pageLoaded(){
+            $.get('U6Data.json', makeHighChart, 'json');
+        }
+
+        $(document).ready(pageLoaded);
+
+        function makeHighChart(U3Data) {
+
+                var rowData = U3Data.observations;
+
+                var numReadings = rowData.length;
+    
+                var dateArray = [];
+                var readingsArray = [];
+
+                for (var i=0; i<numReadings; i++){
+                    
+                    dateArray.push(makeSlashDate(rowData[i].date))
+
+                    readingsArray.push(Number(rowData[i].value));
+
+                }
+
+
+                $('#container').highcharts({
+                    title: {
+                        text: 'U.S. Unemployment Rate',
+                        style:{color:'#FFFFFF'},
+                        x: -20 //center
+                    },
+                    xAxis: {
+                        categories: dateArray, 
+                        labels: {style:{color:'#FFFFFF'}}
+                    },
+                    chart: {
+                        backgroundColor: "#000000",
+                        style: {
+                            fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif',
+                            fontSize: '12px', color: '#333'}
+
+                    },
+                    colors: ["#FFFFFF"],
+                    labels: {style:{color:'#33333'}},
+                    legend: {enabled:false},
+                    yAxis: {
+                        title: {
+                            text: 'Unemployment Rate',
+                            style:{color:'#FFFFFF'}
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }],
+                        labels: {style:{color:'#FFFFFF'}}, 
+                        min: 0
+                    },
+                    exporting: {enabled: false},
+                    tooltip: {
+                        valueSuffix: '%',
+                        style:{color:'#FFFFFF'},
+                        backgroundColor:'#000'
+                    },
+                    series: [{
+                        name: 'U3 rate',
+                        data: readingsArray
+                    }]
+                });
+            }
+    
+
+		</script>
+	</head>
+	<body>
+<script src="../../js/thirdparty/highcharts.js"></script>
+
+<div id="container" style="width: 700px; height: 350px; position:absolute; top:0px; left:0px;"></div>
+
+	</body>
+</html>

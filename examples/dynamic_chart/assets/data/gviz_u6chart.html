@@ -1,0 +1,83 @@
+<!--
+You are free to copy and use this sample in accordance with the terms of the
+Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>
+      Google Visualization API Sample
+    </title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="../../../../js/thirdparty/jquerymin.js"></script>
+    <script type="text/javascript" src="../../../../js/datadocs/utils.js"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+    </script>
+    <script type="text/javascript">
+     
+      function loadData(){
+
+        $.get('U6Data.json', buildU6Chart, 'json');
+
+      }
+
+      function buildU6Chart(U6Data){
+
+
+ var U6Table = new google.visualization.DataTable();
+    U6Table.addColumn('string','Month');
+    U6Table.addColumn('number','U6 Unemployment');
+
+    var rowData = U6Data.observations;
+    
+
+    
+    //this is the number of readings
+    var numReadings = rowData.length;
+    
+    var dataArray = [];
+
+    for (var i=0; i<numReadings; i++){
+        
+        //DataTable expects an array of arrays
+
+        var theRowData = [makeSlashDate(rowData[i].date), Number(rowData[i].value)];
+        
+        dataArray.push(theRowData);
+                
+    } //end of for loop
+    
+    
+    U6Table.addRows(dataArray);
+    
+    var options = {
+          title: 'U6 Rate: Unemployed and Underemployed',
+          width: 800,
+          height: 400,
+          legend: {position:'none'},
+          vAxis: {title: 'Unemployment %', minValue: 0, textStyle: {color:'#FFFFFF'}, titleTextStyle: {color: '#FFFFFF'}},
+          backgroundColor: {stroke: '#FFFFFF', strokeWidth: 0, fill:'#000000'},
+          fontSize: 14,
+          colors: ['#FFFFFF'],
+          fontName: 'PT Mono',
+          titleTextStyle: {color: '#FFFFFF'},
+          hAxis: {format:'MMM d, y', showTextEvery:4, slantedText:true, titleTextStyle: {color: '#FFFFFF'}, textStyle: {color:'#FFFFFF'}}
+        };
+
+    //create bar chart framework, and put it in the div with the id "u6Chart"
+    var chart = new google.visualization.LineChart(document.getElementById("visualization")); 
+       //draw the line chart, based on the dataTable and options that we've created
+        chart.draw(U6Table, options);
+      }
+      
+
+      google.setOnLoadCallback(loadData);
+    </script>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <div id="visualization" style="width: 500px; height: 400px;"></div>
+  </body>
+</html>
