@@ -7,11 +7,8 @@
 		<!--load our webfont -->
 		<link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
 
-		<!--load the google visualization library-->
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
 		<!--load example-specific css -->
-		<link rel="stylesheet" type="text/css" href="css/dd_simple_api.css">
+		<link rel="stylesheet" type="text/css" href="css/dd_dynamic_chart.css">
 		
 		<link rel="stylesheet" type="text/css" href="../../css/main.css">
 		<script src="../../js/thirdparty/jquerymin.js"></script>
@@ -37,8 +34,12 @@
         			<source type="video/webm" src="assets/videoFiles/example_5.webm">
       			</video>		
 	  			<div id="overlays">
-	  				<div id="u3Chart"></div>
-	  				<div id="u6Chart"></div>
+	  				<div id="u3Chart">
+	  					<iframe src="assets/data/highchart_u3chart.htm" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+	  				</div>
+	  				<div id="u6Chart">
+	  					<iframe src="assets/data/gviz_u6chart.html" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+	  				</div>
 	  			</div>
 	  			<div id="custom_controls">
 	  			
