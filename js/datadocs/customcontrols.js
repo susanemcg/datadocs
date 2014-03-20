@@ -11,6 +11,8 @@ function customcontrols(entity, options, data_doc_instance) {
   var scalingElements = [];
   var embedFactor = 1;
   var videoRatio;
+  var fsRatio;
+  var controls_top;
 
 
 
@@ -28,6 +30,9 @@ function customcontrols(entity, options, data_doc_instance) {
 
       videoRatio = [stripPx(fs_CSS.width), stripPx(fs_CSS.height)];
 
+      //calculating proportion of controls height to overall video, to generate top positioning
+      var controls_CSS = controls_div.currentStyle || getComputedStyle(controls_div,null);
+      controls_top = Math.round((stripPx(controls_CSS.height)/stripPx(fs_CSS.height))*100);
 
       if(window != window.parent){
 
@@ -63,7 +68,7 @@ function customcontrols(entity, options, data_doc_instance) {
             scale_style.type = 'text/css';
 
             //transform proportion determined by screen width vs. fullscreen element width
-            var fsRatio = screen.width/stripPx(elemCSS.width)*embedFactor;
+            fsRatio = screen.width/stripPx(elemCSS.width)*embedFactor;
             //console.log("calculating fullscreen factor, elemCSS = "+ elemCSS.width);
             var scaleString = "scale("+fsRatio+","+fsRatio+")";
 
@@ -126,7 +131,7 @@ function customcontrols(entity, options, data_doc_instance) {
   // need error handling for below
   var scrubber = controls_div.querySelector("#scrubber");
   var progressBar = controls_div.querySelector( "#progress" );
-  var timediv = controls_div.querySelector( "#time_count" );
+  var timediv = controls_div.querySelector( "#time_text" );
   var controlsFlag = true;
 
   for(var i=0; i<controlsArray.length; i++){
@@ -219,8 +224,13 @@ function customcontrols(entity, options, data_doc_instance) {
             //going through all elements that need to be scaled and setting height & width to 100% *except* for controls
             var elem = scalingElements[j].elem;
             if(elem === controls_div){ //in case of controls div, only adjust width & top position
+
+              //ok, so what if i *do* scale the controls.
+
               controls_div.style.width = "100%";
-              controls_div.style.top = -stripPx(scalingElements[j].height)-25+"px";
+              controls_div.style.top = -(stripPx(scalingElements[j].height)*fsRatio*(controls_top/10))+"px";
+              controls_div.style.height = (stripPx(scalingElements[j].height)*fsRatio*(controls_top-1)/10)+"px";
+
             }else{
               //this else clause should handle the video and the overlays div
               scalingElements[j].elem.style.width = "100%";
@@ -245,8 +255,12 @@ function customcontrols(entity, options, data_doc_instance) {
               //going through all elements that need to be scaled and returning height & width to original *except* for controls
               var elem = scalingElements[j].elem;
               if(elem === controls_div){ //in case of controls div, only adjust width & top position
+
                 controls_div.style.width = scalingElements[j].width;
-                controls_div.style.top = "-7%";
+                controls_div.style.height = scalingElements[j].height;
+
+                //this is the case when 
+                controls_div.style.top = "-"+controls_top+"%";
               }else{
                 //this else clause should handle the video and the overlays div
                 scalingElements[j].elem.style.width = scalingElements[j].width;
@@ -276,8 +290,7 @@ function customcontrols(entity, options, data_doc_instance) {
       if(controlsArray[i] == "embed"){
 
         if(control_style == "css"){
-          controlButton.innerHTML = "SHARE";
-          controlButton.className = "shareBorder";
+          controlButton.firstChild.innerHTML = "SHARE";
         }else{
           var btnimg = document.createElement("img");
           btnimg.src = "assets/controls/"+controlsArray[i]+".png";  
