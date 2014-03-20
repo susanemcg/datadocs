@@ -1,0 +1,58 @@
+#embed_button{
+    background-color:#000;
+}
+
+#play_pause_button{
+    background-color:#000;
+}
+
+#scrubber{
+    background-color:#000;
+}
+
+#progress{
+    background-color:#F9F9F9;
+}
+
+#time_count{
+    background-color:#000;
+    color:#fff;
+}
+#fullscreen_button{
+    background-color:#000;
+}
+
+.arrow-right{
+    border-left: 20px solid white;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+
+.pauseDash{
+    border-left: 6px solid #FFFFFF;
+    border-right: 6px solid #FFFFFF;
+}
+
+.cornerStyle0{
+    border-left: 3px solid #FFFFFF;
+    border-top: 3px solid #FFFFFF;   
+}
+
+.cornerStyle1{
+    border-top: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;  
+}
+
+.cornerStyle2{
+    border-bottom: 3px solid #FFFFFF;
+    border-left: 3px solid #FFFFFF; 
+}
+.cornerStyle3{
+    border-right: 3px solid #FFFFFF;
+    border-bottom: 3px solid #FFFFFF;
+}
+
+
+#custom_controls{
+    height: 30px;
+    }

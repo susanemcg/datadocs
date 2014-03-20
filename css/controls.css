@@ -1,0 +1,157 @@
+/* positioning and proportioning for controls */
+/* until I have LESS time, this will have to do */
+
+
+/* courtesy http://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-right {
+    width: 0; 
+    height: 0; 
+    margin-left: 42%;
+    margin-top: 3%;
+}
+
+.pauseDash{
+    height: 75%;
+    margin-left: 42%;
+    margin-top: 3%;
+    width: 8%;
+}
+
+.cornerStyle0{
+    width:25%;
+    height:20%;
+    margin-top: 8%;
+    position: relative;
+    margin-left:10%;
+    float:left;
+    display: inline;  
+}
+
+.cornerStyle1{
+    width:25%;
+    height:20%;
+    margin-top: 8%;
+    margin-left:20%;
+    position: relative;
+    float:left;
+    display: inline;
+}
+
+.cornerStyle2{
+    width:25%;
+    height:20%;
+    position: relative;
+    float:left;
+    margin-left:10%;
+    display: inline;
+    margin-top: 5%;
+}
+
+.cornerStyle3{
+    width:25%;
+    height:20%;
+    margin-left: 20%;
+    position: relative;
+    float:left;
+    display: inline;
+    margin-top: 5%;
+}
+
+
+#play_pause_button{
+    width:16%;
+    height:100%;
+    position:relative;
+    float:left;
+    display:inline;
+    cursor: pointer;
+}
+.play_btn{
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.pause_btn{
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+}
+#time_count{
+    display: inline;
+    float: left;
+    font-size: 15px;
+    height: 100%;
+    margin-left:1%;
+    padding-left: 1%;
+    position: relative;
+    width: 11%;
+}
+#time_text{
+    width:100%;
+    height: 100%;
+    margin-top: 5%;
+    font-size: 1em;
+}
+#share_text{
+    width:100%;
+    height: 100%;
+    margin-top: 5%;
+    font-size: 1em;
+}
+#fullscreen_button{
+    width:6%;
+    height:100%;
+    position:relative;
+    float:left;
+    display:inline;
+    margin-left: 1%;
+    cursor: pointer;
+}
+
+#embed_button{
+    width:8%;
+    height:100%;
+    position:relative;
+    float:left;
+    display:inline;
+    margin-left: 1%;
+    cursor: pointer;
+}
+
+#scrubber {
+        position: relative;
+        width: 51%;
+        height: 100%;
+        float: left;
+        display: inline;
+        margin-left: 1%;
+        padding-left:1%;
+        padding-right:1%;
+    }
+    #progress_bkgrnd{
+        width: 100%;
+        height: 65%;
+        display: inline;
+        float:left;
+        cursor: pointer;
+        margin-top: 1%;
+
+    }
+    #progress {
+        width: 0;
+        height: 100%;
+        display: inline;
+        float:left;
+    }
+#custom_controls{
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    z-index: 1002;  
+}

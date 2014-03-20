@@ -1,0 +1,58 @@
+#embed_button{
+    background-color:#F9F9F9;
+    color:#333;
+}
+
+#play_pause_button{
+    background-color:#F9F9F9;
+}
+
+#scrubber{
+    background-color:#F9F9F9;
+}
+#progress{
+    background-color:#333;
+}
+
+#time_count{
+    background-color:#F9F9F9;
+    color:#333;
+}
+#fullscreen_button{
+    background-color:#F9F9F9;
+}
+
+.arrow-right{
+    border-left: 20px solid #333;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+
+.pauseDash{
+    border-left: 6px solid #333;
+    border-right: 6px solid #333;
+}
+
+.cornerStyle0{
+    border-left: 3px solid #333;
+    border-top: 3px solid #333;   
+}
+
+.cornerStyle1{
+    border-top: 3px solid #333;
+    border-right: 3px solid #333;  
+}
+
+.cornerStyle2{
+    border-bottom: 3px solid #333;
+    border-left: 3px solid #333; 
+}
+.cornerStyle3{
+    border-right: 3px solid #333;
+    border-bottom: 3px solid #333;
+}
+
+
+#custom_controls{
+    height: 30px;
+    }
