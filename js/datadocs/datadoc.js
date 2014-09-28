@@ -75,6 +75,11 @@
       return this; 
     },
 
+    runPlugin : function(plugin_name, params){
+      this.video[plugin_name](params);
+
+    },
+
     addSalt : function(jsonObj){
       var allSalt = jsonObj;
       if (!(jsonObj instanceof Array)){
