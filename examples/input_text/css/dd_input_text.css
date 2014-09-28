@@ -1,6 +1,15 @@
 /* It's important to make sure that any overlays have *absolute* positioning,
 	otherwise they won't position correctly in fullscreen mode */
 
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arimo'), url(../assets/fonts/Arimo.woff2) format('woff2');
+}
+
+
+
 #name_input{
     position: absolute;
     top:236px;

@@ -1,6 +1,12 @@
 /* It's important to make sure that any overlays have *absolute* positioning,
 	otherwise they won't position correctly in fullscreen mode */
 
+@font-face {
+  font-family: 'Ribeye';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ribeye'), url(../assets/fonts/Ribeye.woff) format('woff');
+}
 
 /*
     here we're overloading the "revealWrap" class so that our "revealed" text all stays on one line

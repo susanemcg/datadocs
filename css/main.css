@@ -2,8 +2,19 @@
 	otherwise they won't position correctly in fullscreen mode */
 
 
+@font-face {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), url(../assets/fonts/PTMonoLatin.woff2) format('woff2');
+}
 
-
+@font-face {
+  font-family: 'Tangerine';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Tangerine'), url(../assets/fonts/Tangerine.woff) format('woff');
+}
 
 
 /* sharing overlay styles */
