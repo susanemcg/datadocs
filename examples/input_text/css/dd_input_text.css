@@ -1,0 +1,117 @@
+/* It's important to make sure that any overlays have *absolute* positioning,
+	otherwise they won't position correctly in fullscreen mode */
+
+#name_input{
+    position: absolute;
+    top:236px;
+    left:150px;
+}
+#submit_button{
+    position: absolute;
+    top:240px;
+    left:600px;
+    border:solid 2px white;
+    width: 50px;
+    height: 30px;
+}
+.name_box{
+    font-size: 70px;
+    border-style: none; 
+    background-color: transparent;
+    color:white;
+    font-family:'Arimo', sans-serif;
+}
+#name_ex1{
+    font-family:'Arimo', sans-serif;
+    color:white;
+    font-size: 28px;
+    position: absolute;
+    top:70px;
+    left:360px;
+}
+#name_ex2{
+    font-family:'Arimo', sans-serif;
+    color:#ff0000;
+    font-size: 28px;
+    position: absolute;
+    top:50px;
+    left:410px;
+}
+#name_ex3{
+    font-family:'Arimo', sans-serif;
+    color:blue;
+    font-size: 28px;
+    position: absolute;
+    top:200px;
+    left:300px;
+}
+#name_ex4{
+    font-family:'Arimo', sans-serif;
+    color:black;
+    font-size: 28px;
+    position: absolute;
+    top:180px;
+    left:450px;
+}
+#repo_link{
+    color: #333;
+    font-family: 'Arimo',serif;
+    font-size: 60px;
+    left: 100px;
+    position: absolute;
+    top: 100px;
+}
+#clock_time{
+    font-size: 72px;
+    left: 300px;
+    position: absolute;
+    top: 192px;
+}
+
+
+#sample_chart{
+    position:absolute;
+    top: 10px;
+    left: 70px;
+    width:650px;
+    height: 450px;
+}
+#repo_link2{
+    color: #FFFFFF;
+    font-family: 'Arimo',serif;
+    font-size: 60px;
+    left: 197px;
+    position: absolute;
+    top: 100px; 
+}
+#mailto_link{
+    color: #FFFFFF;
+    font-family: 'Arimo',serif;
+    font-size: 60px;
+    left: 197px;
+    position: absolute;
+    top: 300px; 
+}
+
+
+
+/*
+http://www.sitepoint.com/css3-glowing-link-effect/
+*/
+.glow, .glow:hover, .glow:focus
+{
+    text-decoration: none;
+    text-shadow: none;
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+    outline: 0 none;
+}
+
+.glow:hover, .glow:focus
+{
+    color: #fff;
+    text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;
+}
+
