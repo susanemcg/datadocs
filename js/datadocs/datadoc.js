@@ -16,7 +16,16 @@
 
     init : function( entity, fullscreen_container_id, embed_div, options ) {
 
-      this.video = Popcorn("#"+entity);
+      //check to see if we have a "youtube_url" parameter; if so, use that with Popcorn's YouTube player
+      //and keep your fingers crossed
+
+      if(options.youtube_url){
+        var wrapper = Popcorn.HTMLYouTubeVideoElement( "#"+entity );
+        wrapper.src = options.youtube_url;
+        this.video = Popcorn(wrapper);
+      }else{
+        this.video = Popcorn("#"+entity);
+      }
       
       var that = this;
 
@@ -58,17 +67,19 @@
         this.awaitJSON = options.data_url == undefined ? false : true;
       }
 
-        
+     // console.log(that.video.readyState);
       if(this.awaitJSON == false){
         var readyTimer = setInterval(function(){
           if(that.video.readyState() == 4 && that.numIFrames == 0){
+            //console.log("finishing loading?!")
+            //console.log(that.video.readyState());
             document.getElementById("loader_gif").style.display = "none";
             clearInterval(readyTimer);
           }
         }, 100);
       }
 
-      customcontrols(this["video"].video, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div, "control_style":hasCSS}, this);
+      customcontrols(this["video"].video, entity, {"fullscreen_container":fullscreen_container_id, "embed_container":embed_div, "control_style":hasCSS}, this);
 
       this["customcontrols"] = true;
 

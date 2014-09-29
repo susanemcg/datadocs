@@ -1,5 +1,6 @@
-function customcontrols(entity, options, data_doc_instance) {
+function customcontrols(entity, div_id, options, data_doc_instance) {
   var thevideo = entity;
+  var thediv = div_id;
 
   var options = options || {}; // if options were passed, use those; otherwise, make empty so tests don't throw errors
 
@@ -69,7 +70,7 @@ function customcontrols(entity, options, data_doc_instance) {
 
             //transform proportion determined by screen width vs. fullscreen element width
             fsRatio = screen.width/stripPx(elemCSS.width)*embedFactor;
-            //console.log("calculating fullscreen factor, elemCSS = "+ elemCSS.width);
+
             var scaleString = "scale("+fsRatio+","+fsRatio+")";
 
             scale_style.innerHTML = ".fs_scale { -webkit-transform:"+scaleString+"; -webkit-transform-origin: 0% 0%; -moz-transform:"+scaleString+"; -moz-transform-origin: 0% 0%; -ms-transform: "+scaleString+"; -ms-transform-origin: 0% 0%; -o-transform:"+scaleString+"; -o-transform-origin: 0% 0%; transform:"+scaleString+"; transform-origin: 0% 0%;}";
@@ -237,7 +238,7 @@ function customcontrols(entity, options, data_doc_instance) {
               scalingElements[j].elem.style.height = "100%";
 
               //if our element isn't the video, then transform it (so that contained elements, like text, also scale)
-              if(scalingElements[j].elem.nodeName != "VIDEO" && scalingElements[j].elem != fs_div){
+              if(scalingElements[j].elem.id != thediv && scalingElements[j].elem != fs_div){
                 scalingElements[j].elem.className = "fs_scale";
               }
             }
@@ -327,16 +328,16 @@ function customcontrols(entity, options, data_doc_instance) {
     thevideo.addEventListener("timeupdate", function(e){
 
       if(isNaN(totalTime)){
-        totalTime = this.duration;
+        totalTime = thevideo.duration;
       }
 
-      timediv.innerHTML = formatTime(this.currentTime)+"/"+formatTime(totalTime);
-      progressBar.style.width = ((this.currentTime / totalTime) * 100) + "%";
+      timediv.innerHTML = formatTime(thevideo.currentTime)+"/"+formatTime(totalTime);
+      progressBar.style.width = ((thevideo.currentTime / totalTime) * 100) + "%";
     }); //end timeupdate handler
 
     // the metadata of the video, which includes the total duration, loads earliest
     thevideo.addEventListener("loadedmetadata", function (e) {
-      totalTime = this.duration;
+      totalTime = thevideo.duration;
 
       if(isNaN(totalTime)){
 
