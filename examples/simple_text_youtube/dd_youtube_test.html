@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<link rel="stylesheet" type="text/css" href="../../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../../css/controls.css">
+		<link rel="stylesheet" type="text/css" href="../../css/controls_dark.css">
+
+		<!--load example-specific css -->
+		<link rel="stylesheet" type="text/css" href="css/dd_simple_text_youtube.css">
+
+		<script src="../../js/thirdparty/jquerymin.js"></script>
+		<!--
+		<script src="../../js/thirdparty/popcorn.js"></script>
+		-->
+		<script src="assets/popcorn.complete.js"></script>
+		<script src="../../js/thirdparty/screenFull.js"></script>
+		<script src="../../js/datadocs/utils.js"></script>
+		<script src="../../js/datadocs/popcorn_plugins/popcorn.salt.js"></script>
+		<script src="../../js/datadocs/popcorn_plugins/popcorn.caramel.js"></script>
+		<script src="../../js/datadocs/customcontrols.js"></script>
+		<script src="../../js/datadocs/datadoc.js"></script>
+		<title>Data Docs - Simple Text Example</title>
+	</head>
+	<body>
+		<div id="contentContainer">
+			<div id="all_info">
+				<div id="loader_gif">
+					<img src="../../assets/graphElements/712.GIF" />
+				</div>
+				<div id="datadocsvid" style="width:800px; height:500px;">
+      			</div>		
+	  			<div id="custom_controls">
+	  			
+	  				<div id="embed_code">
+	  				</div>
+  			
+	  				<div id="play_pause_button"></div>
+					<div id="scrubber">
+						<div id="progress_bkgrnd">
+						<div id="progress"></div>
+						</div>
+					</div>
+					<div id="time_count"><div id="time_text"></div></div>
+					<div id="embed_button"><div id="share_text"></div></div>
+					<div id="fullscreen_button"></div>
+				</div>
+		  	</div>	  	
+      	</div>
+      	<script>
+      	//if this page is embedded, correct the positioning of our main elements
+      	if(window != window.parent){
+
+      		var theContent = document.getElementById("contentContainer");
+      		theContent.style.position = "absolute";
+      		theContent.style.top = "0px";
+      		theContent.style.left = "0px";
+
+      		var theInfo = document.getElementById("all_info");
+      		theInfo.style.position = "absolute";
+
+      	}
+
+      	    var wrapper = Popcorn.HTMLYouTubeVideoElement( "#datadocsvid" );
+  
+      wrapper.src = "https://www.youtube.com/embed/TsYo3qPfM6g";
+  
+      var pop = Popcorn( wrapper );
+ 
+ 
+    pop.play();
+
+      	</script>
+	</body>
+</html>
+

@@ -1,0 +1,31 @@
+/* It's important to make sure that any overlays have *absolute* positioning,
+	otherwise they won't position correctly in fullscreen mode */
+
+
+
+#dateline{
+    font-family: 'PT Mono', serif;
+    font-size: 18px;
+    color:#ffffff;
+    position:absolute;
+    top: 50px;
+    left: 320px;
+}
+
+#jobs_num{
+    font-family: 'PT Mono', serif;
+    font-size: 48px;
+    color:#ffffff;
+    position:absolute;
+    top: 150px;
+    left: 300px;
+}
+
+#unemp_pct{
+    font-family: 'PT Mono', serif;
+    font-size: 48px;
+    color:#ffffff;
+    position:absolute;
+    top: 275px;
+    left: 340px;
+}
