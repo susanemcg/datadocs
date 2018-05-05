@@ -1,7 +1,9 @@
 datadocs
 ========
 
-Data Docs is a platform for building interactive web videos that seamlessly integrate links, dynamic text and data into a web video experience. For more information about the project and team, see datadocs.org/beta. For training materials and some demos, visit datadocs.org/training. For an overview of the datadocs library and brief guide to the demos, read on.
+Data Docs is a platform for building interactive web videos that seamlessly integrate links, dynamic text and data into a web video experience. For more information about the project and team, see http://www.datadocs.org/beta/. For training materials and some demos, visit http://www.datadocs.org/training/ in the Chrome browser, which includes an interactive explanatory video. If you'd like to see DataDocs in action, please visit: http://susanemcg.github.io/datadocs/ using the Chrome browser. You can also see an archived version of our 2015 Webby-nominated interactive video for Al-Jazeera America, "Who Really Runs Washington?", at the following link: https://vimeo.com/124555217
+
+For an overview of the datadocs library and brief guide to the code demos, please read on.
 
 What is a Data Doc?
 -------------------
